@@ -76,7 +76,7 @@ function update(req, res, next){
     funeralHome.traditional_burial_total_cost = req.body.traditional_burial_total_cost;
     funeralHome.location_img_url = req.body.location_img_url;
 
-    FuneralHome.save(function(err, updatedFuneralHome){
+    funeralHome.save(function(err, updatedFuneralHome){
       if(err) next(err);
 
       res.json(updatedFuneralHome);

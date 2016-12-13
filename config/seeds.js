@@ -36,7 +36,7 @@ var funeralHomes = [
    "direct_cremation_total_cost": 2315,
    "traditional_cremation_total_cost": 5275,
    "traditional_burial_total_cost": 5785,
-   "location_img_url": "http://imgur.com/a/sjvM7"
+   "location_img_url": "http://i.imgur.com/ni1lGjB.png"
  },
  {
    "name": "Funeraria Garcia Mortuary ",
@@ -71,7 +71,7 @@ var funeralHomes = [
    "direct_cremation_total_cost": 1200,
    "traditional_cremation_total_cost": 3971.5,
    "traditional_burial_total_cost": 4863,
-   "location_img_url": "http://imgur.com/a/sjvM7"
+   "location_img_url": "http://i.imgur.com/1x5AwOp.png"
  },
  {
    "name": "Reardon Funeral Home ",
@@ -106,7 +106,7 @@ var funeralHomes = [
    "direct_cremation_total_cost": 1200,
    "traditional_cremation_total_cost": 5455,
    "traditional_burial_total_cost": 4645,
-   "location_img_url": "http://imgur.com/a/sjvM7"
+   "location_img_url": "http://i.imgur.com/IwpDu3A.png"
  }
 ]
 
