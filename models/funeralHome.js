@@ -34,7 +34,8 @@ var funeralHomeSchema = new mongoose.Schema({
   traditional_cremation_total_cost: Number,
   traditional_burial_total_cost: Number,
   location_img_url: String,
-  email: String 
+  email: String,
+  yelpId: String
 });
 
 

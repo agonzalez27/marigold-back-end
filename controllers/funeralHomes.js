@@ -31,13 +31,22 @@ function create(req, res, next){
 
 function show(req, res, next){
   var id = req.params.id;
+  var funeralHomeData = {}
 
   FuneralHome.findById(id, function(err, funeralHome){
     if(err) next(err);
-
+    funeralHomeData = funeralHome
     res.json(funeralHome);
-    console.log(funeralHome)
   })
+  // .request('https://api.yelp.com/v3/businesses/'+ funeralHomeData.yelpId, headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Bearer DMPhWN0AwnOoL6EVFifWMHH3S2NalpivlG5xFM8Go1cA4mHKHm9hROlxybH-jt-oVc_86l93QZ9NAPwwX0u8M-Y6E3nfTvF4Tx4oLE_9x5k6TQBq9qoAa2dXIZ9RWHYx'
+  //     }, function(err, res, body) {
+  //       if(err) next(err)
+  //       res.json(body)
+  //       console.log(body)
+  //   });
+
 }
 
 function update(req, res, next){
@@ -80,6 +89,7 @@ function update(req, res, next){
     funeralHome.traditional_burial_total_cost = req.body.traditional_burial_total_cost;
     funeralHome.location_img_url = req.body.location_img_url;
     funeralHome.email = req.body.email;
+    funeralHome.yelpId = req.body.yelpId;
 
     funeralHome.save(function(err, updatedFuneralHome){
       if(err) next(err);
@@ -111,7 +121,6 @@ FuneralHome.find({}, function(err, homes){
 FuneralHome.findById(id, function(err, funeralHome){
   if(err) return console.log(err);
 
-  console.log(funeralHome)
   email = funeralHome.email
 
   transporter.sendMail({
