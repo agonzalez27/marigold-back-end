@@ -33,7 +33,8 @@ var funeralHomeSchema = new mongoose.Schema({
   direct_cremation_total_cost: Number,
   traditional_cremation_total_cost: Number,
   traditional_burial_total_cost: Number,
-  location_img_url: String 
+  location_img_url: String,
+  email: String 
 });
 
 

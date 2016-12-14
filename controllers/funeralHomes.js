@@ -79,6 +79,7 @@ function update(req, res, next){
     funeralHome.traditional_cremation_total_cost = req.body.traditional_cremation_total_cost;
     funeralHome.traditional_burial_total_cost = req.body.traditional_burial_total_cost;
     funeralHome.location_img_url = req.body.location_img_url;
+    funeralHome.email = req.body.email;
 
     funeralHome.save(function(err, updatedFuneralHome){
       if(err) next(err);
@@ -101,13 +102,27 @@ function destroy(req, res, next){
 function sendEmail(req, res) {
 
 var data = req.body;
+var id = data.id;
+var email = email;
+FuneralHome.find({}, function(err, homes){
+  console.log(homes);
+})
 
-   transporter.sendMail({
-       from: data.contactEmail,
-       to: 'mike.wong@ga.co',
-       subject: 'Message from ' + data.contactName,
-       text: data.contactMsg
-   });
+FuneralHome.findById(id, function(err, funeralHome){
+  if(err) return console.log(err);
 
-   res.json(data);
+  console.log(funeralHome)
+  email = funeralHome.email
+
+  transporter.sendMail({
+      from: data.contactEmail,
+      to: email,
+      subject: 'Message from ' + data.contactName,
+      text: data.contactMsg
+  });
+
+  res.json(data);
+
+})
+
 };
