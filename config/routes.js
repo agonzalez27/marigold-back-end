@@ -18,4 +18,7 @@ router.route('/api/funeralHomes/:id')
   .patch(funeralHomesCtrl.update)
   .delete(funeralHomesCtrl.destroy);
 
+router.route('/api/email')
+  .post(funeralHomesCtrl.sendEmail); 
+
 module.exports = router;

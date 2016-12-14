@@ -1,11 +1,14 @@
-var FuneralHome = require('../models/funeralHome')
+var FuneralHome = require('../models/funeralHome');
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport();
 
 module.exports = {
   index: index,
   create: create,
   show: show,
   update: update,
-  destroy: destroy
+  destroy: destroy,
+  sendEmail: sendEmail
 }
 
 function index(req, res, next) {
@@ -33,6 +36,7 @@ function show(req, res, next){
     if(err) next(err);
 
     res.json(funeralHome);
+    console.log(funeralHome)
   })
 }
 
@@ -93,3 +97,17 @@ function destroy(req, res, next){
     res.json({message: 'Funeral Home Successfully Deleted.'})
   });
 }
+
+function sendEmail(req, res) {
+
+var data = req.body;
+
+   transporter.sendMail({
+       from: data.contactEmail,
+       to: 'mike.wong@ga.co',
+       subject: 'Message from ' + data.contactName,
+       text: data.contactMsg
+   });
+
+   res.json(data);
+};
