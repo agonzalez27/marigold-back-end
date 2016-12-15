@@ -19,6 +19,9 @@ router.route('/api/funeralHomes/:id')
   .delete(funeralHomesCtrl.destroy);
 
 router.route('/api/email')
-  .post(funeralHomesCtrl.sendEmail); 
+  .post(funeralHomesCtrl.sendEmail);
+
+router.route('/api/yelp/:id')
+  .get(funeralHomesCtrl.getYelp);
 
 module.exports = router;

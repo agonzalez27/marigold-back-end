@@ -1,6 +1,7 @@
 var FuneralHome = require('../models/funeralHome');
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport();
+var request = require('request');
 
 module.exports = {
   index: index,
@@ -8,7 +9,8 @@ module.exports = {
   show: show,
   update: update,
   destroy: destroy,
-  sendEmail: sendEmail
+  sendEmail: sendEmail,
+  getYelp: getYelp
 }
 
 function index(req, res, next) {
@@ -29,25 +31,32 @@ function create(req, res, next){
   });
 }
 
+
+
+
 function show(req, res, next){
   var id = req.params.id;
-  var funeralHomeData = {}
 
   FuneralHome.findById(id, function(err, funeralHome){
     if(err) next(err);
-    funeralHomeData = funeralHome
     res.json(funeralHome);
   })
-  // .request('https://api.yelp.com/v3/businesses/'+ funeralHomeData.yelpId, headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': 'Bearer DMPhWN0AwnOoL6EVFifWMHH3S2NalpivlG5xFM8Go1cA4mHKHm9hROlxybH-jt-oVc_86l93QZ9NAPwwX0u8M-Y6E3nfTvF4Tx4oLE_9x5k6TQBq9qoAa2dXIZ9RWHYx'
-  //     }, function(err, res, body) {
-  //       if(err) next(err)
-  //       res.json(body)
-  //       console.log(body)
-  //   });
 
 }
+
+function getYelp(req, res) {
+  var id = req.params.id
+    request.get('https://api.yelp.com/v3/businesses/' + id, {
+    headers: {
+      'Authorization': 'Bearer DMPhWN0AwnOoL6EVFifWMHH3S2NalpivlG5xFM8Go1cA4mHKHm9hROlxybH-jt-oVc_86l93QZ9NAPwwX0u8M-Y6E3nfTvF4Tx4oLE_9x5k6TQBq9qoAa2dXIZ9RWHYx'
+    }
+  }, function(err, response, body){
+    if(err) next(err);
+
+    res.json(JSON.parse(body));
+  });
+}
+
 
 function update(req, res, next){
   var id = req.params.id;
